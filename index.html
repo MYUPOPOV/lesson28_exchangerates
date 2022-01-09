@@ -10,14 +10,27 @@
 </head>
 <body>
 
+  <div class="main-block">
   <select name="select" class="select">
-    <option value ='0'>Выберите тачку</option>
-    <option value="1">bmw</option>
-    <option value="2">volvo</option>
+    <option value ='0'>Какую валюту вы хотите конвертировать?</option>
+    <option value="1">USD => RUB</option>
+    <option value="2">EUR => RUB</option>
+    <option value="3">RUB => USD</option>
+    <option value="4">RUB => EUR</option>
 </select>
 
-<div class="text">
-  Выберите тачку
+<div class="currency1" >
+  <input class="input1" disabled>
+  <span class="span1">$ € ₽</span>
+</div>
+
+<button class="button">Конвертировать</button>
+
+<div class="currency2">
+  <input class="input2" disabled>
+  <span class="span2">$ € ₽</span>
+</div>
+
 </div>
 
 </body>

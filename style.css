@@ -1,1 +1,50 @@
+html {
+	font-size: 25px;
+}
 
+.main-block {
+	/* width: 30%; */
+	text-align: center;
+	margin: 50px;
+}
+
+.select {
+	/* height: 70px; */
+	font-size: 25px;
+	padding: 20px;
+}
+
+.input1 {
+	width: 22%;
+	font-size: 25px;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.span1 {
+	width: 22%;
+	font-size: 25px;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.button {
+	width: 28%;
+	font-size: 25px;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.input2 {
+	width: 22%;
+	font-size: 25px;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.span2 {
+	width: 22%;
+	font-size: 25px;
+	margin-top: 10px;
+	padding: 10px;
+}
