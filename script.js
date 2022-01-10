@@ -7,11 +7,28 @@ const button = document.querySelector('.button');
 const input2 = document.querySelector('.input2');
 const span2 = document.querySelector('.span2');
 
-const sendData = () => {
-	fetch('https://api.exchangeratesapi.io/v1/latest?access_key=API_KEY')
+const toRub = (value, rate) => {
+	const input2 = document.querySelector('.input2');
+	input2.value = value * rate;
+};
+const fromRub = (value, rate) => {
+	const input2 = document.querySelector('.input2');
+	input2.value = value / rate;
+};
+
+const sendData = (value, select) => {
+	fetch('https://www.cbr-xml-daily.ru/daily_json.js')
 		.then((res) => res.json())
 		.then((data) => {
-			console.log(data);
+			if (select === '1') {
+				toRub(value, data.Valute.USD.Previous);
+			} else if (select === '2') {
+				toRub(value, data.Valute.EUR.Previous);
+			} else if (select === '3') {
+				fromRub(value, data.Valute.USD.Value);
+			} else if (select === '4') {
+				fromRub(value, data.Valute.EUR.Value);
+			}
 		})
 		.catch((error) => {
 			console.log(error);
@@ -40,38 +57,20 @@ selectBlock.addEventListener('change', (e) => {
 		span1.textContent = 'R U B';
 		span2.textContent = 'E U R';
 	}
-
-	input1.addEventListener('input', (e) => {
-		e.target.value = e.target.value.replace(/[^0-9.]/, '');
-	});
 });
+
+input1.addEventListener('input', (e) => {
+	e.target.value = e.target.value.replace(/[^0-9.]/, '');
+});
+
 input1.addEventListener('blur', (e) => {
-	e.target.value = e.target.value.replace(/[^0-9()-]+/, '');
+	e.target.value = e.target.value.replace(/[^0-9().-]+/, '');
 	e.target.value = e.target.value.replace(/\s+/, ' ');
-	e.target.value = e.target.value.replace(/^[-\s]+/, '');
-	e.target.value = e.target.value.replace(/[-\s]+$/, '');
+	e.target.value = e.target.value.replace(/^[-\s.]+/, '');
+	e.target.value = e.target.value.replace(/[-\s.]+$/, '');
 });
 
 button.addEventListener('click', (e) => {
 	e.preventDefault();
-	sendData();
+	sendData(input1.value, selectBlock.value);
 });
-
-// fetch('https://api.exchangeratesapi.io/v1/latest?access_key=API_KEY&fromEUR&toUSD&amount=10')
-
-// const sendData = (date) => {
-// 	fetch('https://api.exchangeratesapi.io/v1/latest', {
-// 		method: 'POST',
-// 		body: JSON.stringify(data),
-// 		headers: {
-// 			'Content-type': 'application/json; charset=UTF-8',
-// 		},
-// 	})
-// 		.then((res) => res.json())
-// 		.then((data) => {
-// 			console.log(data);
-// 		})
-// 		.catch((error) => {
-// 			console.log(error);
-// 		});
-// };
